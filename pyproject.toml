@@ -1,0 +1,53 @@
+[project]
+name = "rez-production-context"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E"]
+authors = [
+    { name = "PiloeGAO", email = "leonumerique@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+    "Development Status :: 4 - Alpha",
+    "Private :: Do Not Upload"
+]
+keywords = ["rez", "vfx", "animation", "cgi", "context", "production"]
+
+[project.optional-dependencies]
+shotgun = [
+    "shotgun-api3>=3.10.0",
+]
+kitsu = [
+    "gazu>=1.1.6",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.1,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.black]
+target-version = ['py311']
+
+[tool.pytest.ini_options]
+addopts = "--maxfail=1 --cov=testing_demo"
+
+[dependency-groups]
+dev = [
+    {include-group = "lint"},
+    {include-group = "test"}
+]
+lint = [
+    "black>=26.3.1",
+    "isort>=8.0.1",
+    "ruff>=0.15.7",
+]
+
+test = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.1.0",
+    "pytest-docker>=3.2.5",
+    "pytest-mock>=3.15.1",
+]
