@@ -32,7 +32,12 @@ build-backend = "uv_build"
 target-version = ['py311']
 
 [tool.pytest.ini_options]
-addopts = "--maxfail=1 --cov=testing_demo"
+addopts = "--maxfail=1 --cov=rez_production_context"
+python_files = "tests_*.py test_*.py"
+pythonpath = [
+    'src',
+]
+env_files = [".env"]
 
 [dependency-groups]
 dev = [
@@ -42,6 +47,7 @@ dev = [
 lint = [
     "black>=26.3.1",
     "isort>=8.0.1",
+    "mypy>=1.15.0",
     "ruff>=0.15.7",
 ]
 
@@ -49,5 +55,7 @@ test = [
     "pytest>=9.0.2",
     "pytest-cov>=7.1.0",
     "pytest-docker>=3.2.5",
+    "pytest-dotenv>=0.5.2",
     "pytest-mock>=3.15.1",
+    "requests>=2.33.0",
 ]
