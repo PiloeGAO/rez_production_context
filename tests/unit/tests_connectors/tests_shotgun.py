@@ -170,9 +170,17 @@ def test_get_asset_types_skips_none_asset_type(connector, mock_sg):
 
 def test_get_asset_type_returns_asset_type(connector, mock_sg):
     project = Project(PROJECT_NAME)
+    mock_sg.find_one.side_effect = [{"id": PROJECT_ID}, {"sg_asset_type": ASSET_TYPE_NAME}]
     result = connector.get_asset_type(project, ASSET_TYPE_NAME)
     assert isinstance(result, AssetType)
     assert result.name == ASSET_TYPE_NAME
+
+
+def test_get_asset_type_raises_when_not_found(connector, mock_sg):
+    project = Project(PROJECT_NAME)
+    mock_sg.find_one.side_effect = [{"id": PROJECT_ID}, None]
+    with pytest.raises(EntityNotFoundError):
+        connector.get_asset_type(project, "DoesNotExist")
 
 
 # ---------------------------------------------------------------------------

@@ -126,16 +126,34 @@ class Shotgun(Base):
             if name and name not in seen:
                 seen.add(name)
                 asset_types.append(AssetType(name, project))
+
         return asset_types
 
     def get_asset_type(self, project: Project, asset_type_name: str) -> AssetType:
-        """Return an asset type by name within ``project``.
+        """Return the asset type matching ``asset_type_name`` within ``project``.
+
+        Asset types are derived from the distinct ``sg_asset_type`` values found
+        on asset records. Raises ``EntityNotFoundError`` if no asset carries that
+        type in the given project.
 
         Args:
             project: The project the asset type belongs to.
             asset_type_name: Name of the asset type to retrieve.
         """
-        return AssetType(asset_type_name, project)
+        sg_project = self._find_sg_project(project)
+        result = self._connection().find_one(
+            "Asset",
+            [
+                ["project", "is", {"type": "Project", "id": sg_project["id"]}],
+                ["sg_asset_type", "is", asset_type_name],
+            ],
+            ["sg_asset_type"],
+        )
+        if result is None:
+            raise EntityNotFoundError(
+                f"Asset type '{asset_type_name}' not found in project '{project.name}'."
+            )
+        return AssetType(result["sg_asset_type"], project)
 
     # ------------------------------------------------------------------
     # Assets
