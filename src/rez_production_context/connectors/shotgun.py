@@ -1,8 +1,8 @@
 import importlib
 
 from ..contexts import Asset, AssetType, Project, Sequence, Shot
-from .base import Base, EntityNotFoundError
-
+from ..exceptions import EntityNotFoundError
+from .base import Base
 
 class Shotgun(Base):
     """Connector for ShotGrid (Flow Production Tracking) using the shotgun_api3 library.

@@ -1,7 +1,7 @@
 import pytest
 
 from rez_production_context import get_context, get_context_from_env
-from rez_production_context.connectors.base import EntityNotFoundError
+from rez_production_context.exceptions import EntityNotFoundError
 from rez_production_context.constants import (
     CATEGORY_CONTEXT_ENV,
     ENTITY_CONTEXT_ENV,

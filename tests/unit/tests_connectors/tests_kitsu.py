@@ -1,6 +1,6 @@
 import pytest
 
-from rez_production_context.connectors.base import EntityNotFoundError
+from rez_production_context.exceptions import EntityNotFoundError
 from rez_production_context.connectors.kitsu import Kitsu
 from rez_production_context.contexts import Asset, AssetType, Project, Sequence, Shot
 

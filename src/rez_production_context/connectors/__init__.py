@@ -1,6 +1,6 @@
 import importlib
 
-from .base import Base, EntityNotFoundError
+from .base import Base
 
 _CONNECTOR_REGISTRY: list[tuple[str, str]] = [
     (".kitsu", "Kitsu"),

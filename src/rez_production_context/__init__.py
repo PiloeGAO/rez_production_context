@@ -36,7 +36,7 @@ def get_context(
     if entity is not None and category is None:
         raise ValueError("category is required when entity is provided.")
 
-    from .connectors import EntityNotFoundError
+    from .exceptions import EntityNotFoundError
     from .manager import Manager
 
     manager = Manager()

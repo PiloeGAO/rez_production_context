@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from rez_production_context.connectors.base import EntityNotFoundError
+from rez_production_context.exceptions import EntityNotFoundError
 from rez_production_context.connectors.shotgun import Shotgun
 from rez_production_context.contexts import Asset, AssetType, Project, Sequence, Shot
 

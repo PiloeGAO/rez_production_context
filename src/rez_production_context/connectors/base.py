@@ -4,9 +4,6 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 
-class EntityNotFoundError(LookupError):
-    """Raised by a connector when a requested entity does not exist."""
-
 if TYPE_CHECKING:
     from rez_production_context.contexts import (
         Asset,
