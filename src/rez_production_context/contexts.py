@@ -75,6 +75,15 @@ class Project:
 
         return Manager().get_sequences(self)
 
+    @property
+    def project(self) -> "Project":
+        """A utility function returning the current Project instance.
+
+        Returns:
+            :class:`Project`: The current project instance.
+        """
+        return self
+
 
 class AssetType(ProjectBasedContext):
     def __init__(self, name: str, project: Project, step: str | None = None):
