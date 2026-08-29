@@ -1,0 +1,10 @@
+services:
+  cgwire:
+    image: cgwire/cgwire:latest
+    container_name: kitsu
+    init: true
+    tty: true
+    stdin_open: true
+    ports:
+      - 80:80
+      - 1080:1080
